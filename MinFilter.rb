@@ -1,15 +1,9 @@
-class MinFilter < Filter
+require './ScalarFilter.rb'
+class MinFilter < ScalarFilter
 
-  #TODO: Refactor out code to Filter or Scalar Filter
-  def get_max(input)
-    output = 0
-    if @n
-      output = @inputs[(@inputs.length - @n).. @inputs.length]
-    else
-      output << @inputs.min
-    end
-    @outputs << output
-    output
+  #TODO: Refactor out code to Scalar Filter
+  def get_min(input)
+    get_output(input){|arr| arr.min}
   end
 
 end

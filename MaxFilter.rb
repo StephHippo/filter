@@ -1,20 +1,9 @@
 require './Filter.rb'
 
-class MaxFilter < Filter
-
-  def initialize(n = nil)
-    @n = n
-  end
+class MaxFilter < ScalarFilter
 
   def get_max(input)
-    output = 0
-    if @n
-      output = @inputs[(@inputs.length - @n).. @inputs.length]
-    else
-      output << @inputs.max
-    end
-    @outputs << output
-    output
+    get_output(input){|arr| arr.max}
   end
 
 end

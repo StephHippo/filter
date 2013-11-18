@@ -16,32 +16,34 @@ class ScalarLinearFilter < ScalarFilter
   end
 
   def get_output(input)
+    raise "Not a number" unless input.is_a? Fixnum
+    #add to input
     input_value(input)
+
+    #get count of output parameters
     n = @input_parameters.length
+    #get the last n values of the input, using 0 as placeholder for underflow
     inputs = get_last_z_values(n){@inputs}
+    #calculate numerator
     numerator = multiply_each_by_param(inputs){@input_parameters}
 
-
+    #get count of output parameters
     m = @output_parameters.length
+    #get the last n values of the output, using 0 as a placeholder for underflow
     outputs = get_last_z_values(m){@outputs}
+    #calculate denominator
     denominator = multiply_each_by_param(outputs){@output_parameters}
 
-    #denominator = 0
-    #outputs.each_with_index do |output,i|
-    #  denominator += output*@output_parameters[i]
-    #end
-    #
-    #numerator = 0
-    #inputs.each_with_index do |input, i|
-    #  numerator += input*@input_parameters[i]
-    #end
-
-    if @outputs.empty?
+    #if output is empty
+    if @outputs.empty? || @output_parameters.empty?
+      #there is no denominator, just return numerator
       @outputs << numerator
     else
+      #divide
+      #if denominator is 0, will return infinity as expected
       @outputs << numerator/denominator
     end
-
+    #return latest output
     @outputs.last
   end
 

@@ -13,12 +13,16 @@ class Filter
   def reset(reset_in_val = nil, reset_out_val = nil)
     #print inputs and outputs to be discarded
     print_table unless @inputs.empty?
+    #indicate reset occurred
     puts "\t0"
+    #reset input values to an empty array unless given a reset value
     reset_in_val.nil? ? @inputs = [] : @inputs.map! { |input| input = reset_in_val }
+    #reset output values to an empty array unless given a reset value
     reset_out_val.nil? ? @outputs = [] : @outputs.map! { |output| output = reset_out_val }
   end
 
   def input_value(input)
+    #append input to inputs
     @inputs << input
   end
 
@@ -30,11 +34,13 @@ class Filter
     end
   end
 
-  #TODO: Probably should move to Filter
   def get_output(input)
     raise "Not a Number" unless (input.is_a? Fixnum)
+    #append input
     input_value(input)
+    #caluclate output and append to outputs
     @outputs << operate_on_inputs{|arr| yield arr}
+    #return latest outputs
     @outputs.last
   end
 
@@ -44,11 +50,10 @@ class Filter
   def operate_on_inputs
     if @n && @n < @inputs.length
       #calculate on just the last n values
-      output = yield @inputs[(@inputs.length - @n)..@inputs.length]
+      yield @inputs[(@inputs.length - @n)..@inputs.length]
     else
       #calculate on all values
-      output = yield @inputs
+      yield @inputs
     end
-    output
   end
 end

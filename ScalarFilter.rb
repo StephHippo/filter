@@ -1,10 +1,10 @@
-require './ScalarFilter.rb'
+require './Filter.rb'
 
 class ScalarFilter < Filter
 
   def initialize(n = nil)
-    super.initialize
-    @n
+    super()
+    @n = n
   end
 
   def reset
@@ -13,8 +13,9 @@ class ScalarFilter < Filter
   end
 
   def get_output(input)
+    raise "Not a Number" unless (input.is_a? Fixnum)
     input_value(input)
-    @outputs << super.output{|arr| yield arr}
+    @outputs << output{|arr| yield arr}
     @outputs.last
   end
 

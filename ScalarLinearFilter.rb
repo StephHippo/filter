@@ -46,12 +46,13 @@ class ScalarLinearFilter < Filter
 
   #multiplies each input/output by its corresponding parameter
   def multiply_each_by_param(arr, params_arr)
-    raise "Arrays not equal" unless arr.length == params_arr.length
+    raise "Arrays must be of equal length" unless arr.length == params_arr.length
     total = 0
-    raise "Unequal arrays" unless (params_arr.length == arr.length)
+    #multiply each value by its corresponding parameter and add to total
     arr.each_with_index do |arr,i|
       total += arr*params_arr[i]
     end
+    #return total
     total
   end
 

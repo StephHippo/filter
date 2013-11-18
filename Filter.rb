@@ -8,26 +8,39 @@ class Filter
     @outputs = []
   end
 
-  #TODO: not sure if this is where I want this
-  def reset
-
+  #TODO: Use an options hash?
+  def reset(reset_in_val = 0, reset_out_val = 0)
+    #print inputs and outputs to be discarded
+    to_s
+    @inputs.map!{|input| input = reset_in_val}
+    @outputs.map!{|output| output = reset_out_val}
   end
 
-  def average
-
+  #TODO: Opportunity to refactor last 3 lines
+  #TODO: Best way to handle?
+  #takes an input, gives an output
+  def function(input, n = @inputs.length)
+    @inputs << input
+    if block_given?
+      output = yield input
+    else
+      output = input
+    end
+    @outputs << output
+    output
   end
 
-  def get_output
-    @outputs.last
+  def input_value(input)
+    @inputs << input
   end
 
-  def get_max
-
+  def to_s
+    puts "Inputs  \t  Outputs"
+    #TODO: If we decide to support archived inputs, add functionality here
+    #for each input, put the output
+    @inputs.each_with_index do |input, i|
+      puts "#{input} \t #{@outputs[i]}"
+    end
   end
-
-  def get_min
-
-  end
-
 
 end

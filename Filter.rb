@@ -2,14 +2,12 @@ class Filter
 
   #repeatedly takes an input value
   #produces an output value
-  attr_reader :n
 
   def initialize
     @inputs = []
     @outputs = []
   end
 
-  #TODO: Use an options hash?
   def reset(reset_in_val = 0, reset_out_val = 0)
     #print inputs and outputs to be discarded
     print_table unless @inputs.is_empty?

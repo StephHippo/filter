@@ -39,15 +39,15 @@ class Filter
     #append input
     input_value(input)
     #caluclate output and append to outputs
-    @outputs << operate_on_inputs{|arr| yield arr}
+    @outputs << relevant_values{|arr| yield arr}
     #return latest outputs
     @outputs.last
   end
 
   private
 
-  #TODO: Needs renamed
-  def operate_on_inputs
+  #returns relevant values for computation
+  def relevant_values
     if @n && @n < @inputs.length
       #calculate on just the last n values
       yield @inputs[(@inputs.length - @n)..@inputs.length]

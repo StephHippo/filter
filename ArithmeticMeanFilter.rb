@@ -1,9 +1,8 @@
 require './ScalarFilter.rb'
 class ArithmeticMeanFilter < ScalarFilter
 
-  def get_mean(input)
-    get_output(input){|arr| average(arr)}
-
+  def get_output(input)
+    super(input){|arr| average(arr)}
   end
 
   private

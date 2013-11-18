@@ -6,8 +6,8 @@ class MaxFilter < ScalarFilter
     super(n)
   end
 
-  def get_max(input)
-    get_output(input){|arr| arr.max}
+  def get_output(input)
+    super(input){|arr| arr.max}
   end
 
 end

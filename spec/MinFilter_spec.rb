@@ -6,10 +6,10 @@ describe 'MinFilter' do
   end
 
   it 'should find the max of a series of inputs' do
-    @min.get_min(5).should be 5
-    @min.get_min(1).should be 1
-    @min.get_min(7).should be 1
-    @min.get_min(-1).should be -1
+    @min.get_output(5).should be 5
+    @min.get_output(1).should be 1
+    @min.get_output(7).should be 1
+    @min.get_output(-1).should be -1
   end
 
   it 'should assert that the inputs must be numbers' do
@@ -17,11 +17,11 @@ describe 'MinFilter' do
   end
 
   it 'should discard data after reset' do
-    @min.get_min(5).should be 5
-    @min.get_min(1).should be 1
-    @min.get_min(7).should be 1
-    @min.get_min(-1).should be -1
+    @min.get_output(5).should be 5
+    @min.get_output(1).should be 1
+    @min.get_output(7).should be 1
+    @min.get_output(-1).should be -1
     @min.reset
-    @min.get_min(0).should be 0
+    @min.get_output(0).should be 0
   end
 end

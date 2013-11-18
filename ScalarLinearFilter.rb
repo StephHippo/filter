@@ -26,31 +26,14 @@ class ScalarLinearFilter < Filter
     n = @input_parameters.length
     #get the last n values of the input, using 0 as placeholder for underflow
     inputs = get_last_z_values(n){@inputs}
-    #calculate numerator
-    numerator = multiply_each_by_param(inputs){@input_parameters}
 
     #get count of output parameters
     m = @output_parameters.length
     #get the last n values of the output, using 0 as a placeholder for underflow
     outputs = get_last_z_values(m){@outputs}
-    #calculate denominator
-    denominator = multiply_each_by_param(outputs){@output_parameters}
 
-    #if output is empty
-    if @outputs.empty? || @output_parameters.empty?
-      #there is no denominator, just return numerator
-      @outputs << numerator
-    else
-      #divide
-      #if denominator is 0, will return infinity
-      if denominator == 0
-        @outputs << Float::INFINITY
-      #else if divides
-      else
-        @outputs << numerator/denominator
-      end
-    end
-    #return latest output
+    output =  multiply_each_by_param(inputs){@input_parameters} - multiply_each_by_param(outputs){@output_parameters}
+    @outputs << output
     @outputs.last
   end
 

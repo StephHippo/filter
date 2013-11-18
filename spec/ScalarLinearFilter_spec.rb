@@ -7,7 +7,7 @@ describe 'ScalarLinearFilter' do
 
   it 'should find the max of a series of inputs' do
     @sl.get_output(-1).should eq(-0.5)
-    @sl.get_output(1).should eq(0.0)
+    @sl.get_output(1).should eq(0.05)
   end
 
   it 'should reset values to r' do
@@ -15,7 +15,6 @@ describe 'ScalarLinearFilter' do
     @sl.outputs.each do |out|
       o.should eq (1/1.1)
     end
-
   end
 
   it 'should assert that the inputs must be numbers' do

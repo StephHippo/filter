@@ -35,7 +35,7 @@ class ScalarLinearFilter < ScalarFilter
     denominator = multiply_each_by_param(outputs){@output_parameters}
 
     #if output is empty
-    if @outputs.empty?
+    if @outputs.empty? || @output_parameters.empty?
       #there is no denominator, just return numerator
       @outputs << numerator
     else
@@ -43,6 +43,7 @@ class ScalarLinearFilter < ScalarFilter
       #if denominator is 0, will return infinity
       if denominator == 0
         @outputs << Float::INFINITY
+      #else if divides
       else
         @outputs << numerator/denominator
       end

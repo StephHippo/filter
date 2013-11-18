@@ -12,7 +12,7 @@ class Filter
   #TODO: Use an options hash?
   def reset(reset_in_val = 0, reset_out_val = 0)
     #print inputs and outputs to be discarded
-    to_s unless @inputs.is_empty?
+    print_table unless @inputs.is_empty?
     @inputs.map!{|input| input = reset_in_val}
     @outputs.map!{|output| output = reset_out_val}
   end
@@ -21,7 +21,7 @@ class Filter
     @inputs << input
   end
 
-  def to_s
+  def print_table
     puts "Inputs  \t  Outputs"
     #for each input, put the output
     @inputs.each_with_index do |input, i|

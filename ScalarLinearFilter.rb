@@ -8,6 +8,7 @@ class ScalarLinearFilter < Filter
     @output_parameters = outputparams
   end
 
+  #reset values based on r
   def reset(r)
     #sum the input parameters
     input_parameters_sum = @input_parameters.inject(:+)
@@ -19,6 +20,7 @@ class ScalarLinearFilter < Filter
     super(r, output_reset)
   end
 
+  # calculates the current output value based on params
   def get_output(input)
     raise "Not a number" unless input.is_a? Fixnum
     #add to input

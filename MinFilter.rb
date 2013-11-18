@@ -5,6 +5,7 @@ class MinFilter < Filter
     super(n)
   end
 
+  # Find the min
   def get_output(input)
     super(input){|arr| arr.min}
   end

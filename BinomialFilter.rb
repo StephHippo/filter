@@ -15,12 +15,20 @@ class BinomialFilter < FIRFilter
   private
 
   def update_input_params
-    i = (@outputs.length + 1).to_i
+    #get the number of outputs, adding 1 to account for the output being calculated
+    @input_parameters << binomial_value
+  end
+
+  #calculate the binomial from the factorials
+  #nCk = n!/((n-k)!k!)
+  def binomial_value
+    i = @outputs.length + 1
+    #if i is greater than n, the binomial is 1
     if i > @n
-      b = 1
+      1
     else
-      b = @n.factorial/((@n-i).to_i.factorial * (i).factorial)
+      #else, get the binomial value
+      @n.factorial/((@n-i).factorial * (i).factorial)
     end
-    @input_parameters << b
   end
 end

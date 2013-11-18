@@ -10,30 +10,21 @@ class Filter
     @n = n
   end
 
+  #resets values of input and input
   def reset(reset_in_val = nil, reset_out_val = nil)
-    #print inputs and outputs to be discarded
-    print_table unless @inputs.empty?
-    #indicate reset occurred
-    puts "\t0"
     #reset input values to an empty array unless given a reset value
     reset_in_val.nil? ? @inputs = [] : @inputs.map! { |input| input = reset_in_val }
     #reset output values to an empty array unless given a reset value
     reset_out_val.nil? ? @outputs = [] : @outputs.map! { |output| output = reset_out_val }
   end
 
+  # appends to inputs
   def input_value(input)
     #append input to inputs
     @inputs << input
   end
 
-  def print_table
-    puts "\nInputs \t Reset \t Outputs"
-    #for each input, put the output
-    @inputs.each_with_index do |input, i|
-      puts "#{input} \t \t \t #{@outputs[i]}"
-    end
-  end
-
+  # calculate output and return latest output
   def get_output(input)
     raise "Not a Number" unless (input.is_a? Fixnum)
     #append input

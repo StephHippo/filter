@@ -6,6 +6,7 @@ class MaxFilter < Filter
     super(n)
   end
 
+  #find the max
   def get_output(input)
     super(input){|arr| arr.max}
   end

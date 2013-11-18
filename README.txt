@@ -1,15 +1,16 @@
 						        Filter
 						            |
-		____________________________|_____________________
-		|		|	            |	       			      |
-		|		|	            |   				ScalarLinearFilter
+		____________________________|______________________________________________
+		|		|	            |	       			      |                        |
+		|		|	            |   				ScalarLinearFilter      FilterCascade
 		|		|	            |			     	       |
 MaxFilter	   MinFilter	ArithmeticMeanFilter		FIRFilter
 									                        |
 									                BinomialFilter
 
 
-Originally had MaxFilter, MinFilter, and ArithmeticMeanFilter inheriting from ScalarFilter, however it was no different than the Filter class so removed because it was extraneous and made the abstraction confusing as there was no longer a distinction between a Filter and a ScalarFilter.
+Originally had MaxFilter, MinFilter, and ArithmeticMeanFilter inheriting from ScalarFilter,
+however it was no different than the Filter class so removed because it was extraneous and made the abstraction confusing as there was no longer a distinction between a Filter and a ScalarFilter.
 
 Filter
      Optional n parameter allows users to specify if we're only checking the last N values of input

@@ -56,12 +56,17 @@ class ScalarLinearFilter < Filter
   end
 
   #retrieves the latest z values of an input or output
+  #if there are not enough parameters, it fills the empty values with 0
   def get_last_z_values(z, value_array)
     arr = value_array
+    #if there will be missing output params
     if arr.length < z
+      #get the parameters that are there
       arr = arr.reverse
+      #fill in any gaps with 0's
       (z - arr.length).times{arr << 0}
     else
+      #get the latest z values from the array
       arr = arr.reverse[0...z]
     end
     arr

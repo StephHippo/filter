@@ -38,7 +38,7 @@ class ScalarLinearFilter < Filter
     output =  multiply_each_by_param(inputs, @input_parameters) - multiply_each_by_param(outputs, @output_parameters)
     #push output value onto @outputs array
     @outputs << output
-    #return lastest output
+    #return latest output
     @outputs.last
   end
 

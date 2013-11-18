@@ -10,6 +10,14 @@ describe 'ScalarLinearFilter' do
     @sl.get_output(1).should eq(0.0)
   end
 
+  it 'should reset values to r' do
+    @sl.reset(1)
+    @sl.outputs.each do |out|
+      o.should eq (1/1.1)
+    end
+
+  end
+
   it 'should assert that the inputs must be numbers' do
     lambda{@sl.get_output(Object.new)}.should raise_error
   end

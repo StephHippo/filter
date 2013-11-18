@@ -1,6 +1,6 @@
-require './ScalarFilter.rb'
+require './Filter.rb'
 
-class ScalarLinearFilter < ScalarFilter
+class ScalarLinearFilter < Filter
 
   def initialize(inputparams, outputparams)
     super()
@@ -11,8 +11,10 @@ class ScalarLinearFilter < ScalarFilter
   def reset(r)
     input_parameters_sum = @input_parameters.inject(:+)
     output_parameters_sum = @output_parameters.inject(:+)
-    @inputs.map!{|input| input = r}
-    @outputs.map!{|output| output = (r * output_parameters_sum) / (1 + input_parameters_sum)}
+    #@inputs.map!{|input| input = r}
+    #@outputs.map!{|output| output = (r * output_parameters_sum) / (1 + input_parameters_sum)}
+    output_reset = (r * output_parameters_sum) / (1 + input_parameters_sum)
+    super(r, output_reset)
   end
 
   def get_output(input)

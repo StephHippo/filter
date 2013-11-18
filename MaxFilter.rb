@@ -1,6 +1,6 @@
-require './ScalarFilter.rb'
+require './Filter.rb'
 
-class MaxFilter < ScalarFilter
+class MaxFilter < Filter
 
   def initialize(n = nil)
     super(n)

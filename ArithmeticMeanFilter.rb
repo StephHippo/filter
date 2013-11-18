@@ -1,5 +1,5 @@
-require './ScalarFilter.rb'
-class ArithmeticMeanFilter < ScalarFilter
+require './Filter.rb'
+class ArithmeticMeanFilter < Filter
 
   def get_output(input)
     super(input){|arr| average(arr)}

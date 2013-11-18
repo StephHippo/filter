@@ -21,7 +21,7 @@ describe 'ArithmeticMeanFilter' do
     @mean.get_output(5).should be 5
     @mean.get_output(11).should be 7
     @mean.get_output(3).should be 6
-    @mean.reset
+    @mean.reset()
     @mean.get_output(2).should be 2
     @mean.get_output(6).should be 4
   end

@@ -1,5 +1,5 @@
-require './ScalarFilter.rb'
-class MinFilter < ScalarFilter
+require './Filter.rb'
+class MinFilter < Filter
 
   def initialize(n = nil)
     super(n)

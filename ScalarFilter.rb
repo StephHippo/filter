@@ -12,24 +12,25 @@ class ScalarFilter < Filter
     @outputs = []
   end
 
+  #TODO: Probably should move to Filter
   def get_output(input)
     raise "Not a Number" unless (input.is_a? Fixnum)
     input_value(input)
-    @outputs << output{|arr| yield arr}
+    @outputs << operate_on_inputs{|arr| yield arr}
     @outputs.last
   end
 
   private
 
-  def output
-    if @n
+  #TODO: Needs renamed
+  def operate_on_inputs
+    if @n && @n < @inputs.length
       #calculate on just the last n values
-      output = yield @inputs[(@inputs.length - @n).. @inputs.length]
+      output = yield @inputs[(@inputs.length - @n)..@inputs.length]
     else
       #calculate on all values
       output = yield @inputs
     end
-    @outputs << output
     output
   end
 

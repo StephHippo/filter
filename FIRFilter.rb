@@ -1,5 +1,9 @@
-require './Filter.rb'
+require './ScalarLinearFilter.rb'
 
-class FIRFilter < Filter
+class FIRFilter < ScalarLinearFilter
+
+  def initialize(inputparams)
+    super(inputparams, [])
+  end
 
 end

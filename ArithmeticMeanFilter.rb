@@ -1,9 +1,10 @@
-require './Filter.rb'
-class ArithmeticMeanFilter < Filter
+require './ResettableFilter.rb'
+class ArithmeticMeanFilter < ResettableFilter
 
-  def get_output(input)
-    #update output with calculated average
-    super(input){|arr| average(arr)}
+  def initialize(n = nil)
+    operation = lambda{|arr| average(arr) }
+    super(n, &operation)
+
   end
 
   private

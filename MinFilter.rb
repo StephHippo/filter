@@ -1,13 +1,9 @@
-require './Filter.rb'
-class MinFilter < Filter
+require './ResettableFilter.rb'
+class MinFilter < ResettableFilter
 
   def initialize(n = nil)
-    super(n)
-  end
-
-  # Find the min
-  def get_output(input)
-    super(input){|arr| arr.min}
+    operation = lambda{|arr| arr.min}
+    super(n, &operation)
   end
 
 end

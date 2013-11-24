@@ -25,11 +25,6 @@ class BinomialFilter < FIRFilter
   def binomial_value
     i = @outputs.length + 1
     #if i is greater than n, the binomial is 1
-    if i > @n
-      1
-    else
-      #else, get the binomial value
-      @n.factorial/((@n-i).factorial * (i).factorial)
-    end
+    (i > @n) ? 1 : @n.factorial/((@n-i).factorial * (i).factorial)
   end
 end

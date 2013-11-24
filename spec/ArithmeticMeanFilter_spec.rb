@@ -5,7 +5,7 @@ describe 'ArithmeticMeanFilter' do
     @mean = ArithmeticMeanFilter.new
   end
 
-  it 'should find the max of a series of inputs' do
+  it 'should find the mean of a series of inputs' do
     @mean.get_output(5).should be 5
     @mean.get_output(5).should be 5
     @mean.get_output(11).should be 7

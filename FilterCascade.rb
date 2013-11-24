@@ -13,13 +13,6 @@ class FilterCascade < Filter
     @filters << filter
   end
 
-  # reset all of the filters in the cascade if it responds to the reset
-  def reset
-    @filters.each do |filter|
-      filter.reset if filter.respond_to?(:reset)
-    end
-  end
-
   #push input through all filters
   def cascade(input)
     cascade_input = input

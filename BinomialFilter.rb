@@ -1,5 +1,6 @@
 require './FIRFilter.rb'
 require './Fixnum.rb'
+
 class BinomialFilter < FIRFilter
 
   def initialize(n)

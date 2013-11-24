@@ -1,6 +1,6 @@
-require './Filter.rb'
+require './ResettableFilter.rb'
 
-class ScalarLinearFilter < Filter
+class ScalarLinearFilter < ResettableFilter
 
   def initialize(inputparams, outputparams)
     super()
@@ -36,9 +36,8 @@ class ScalarLinearFilter < Filter
     #get the last n values of the output, using 0 as a placeholder for underflow
     outputs = get_last_z_values(m, @outputs)
 
-    #solve for yi by subtracting values by both sides
+    #solve for yi by subtracting values from right hand side
     output =  multiply_each_by_param(inputs, @input_parameters) - multiply_each_by_param(outputs, @output_parameters)
-    #push output value onto @outputs array
     @outputs << output
     #return latest output
     @outputs.last

@@ -1,4 +1,4 @@
-require './Filter.rb'
+require './filters/Filter.rb'
 
 class FilterCascade < Filter
 

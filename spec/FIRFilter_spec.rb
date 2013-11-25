@@ -1,4 +1,4 @@
-require './FIRFilter.rb'
+require './filters/FIRFilter.rb'
 
 describe 'FIRFilters' do
   before (:each) do

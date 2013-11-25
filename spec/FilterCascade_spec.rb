@@ -1,6 +1,6 @@
-require './FilterCascade.rb'
-require './MaxFilter.rb'
-require './MinFilter.rb'
+require './filters/FilterCascade.rb'
+require './filters/MaxFilter.rb'
+require './filters/MinFilter.rb'
 
 describe 'FilterCascade' do
   before(:each) do

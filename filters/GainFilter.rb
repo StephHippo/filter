@@ -1,4 +1,4 @@
-require './GainFilter.rb'
+require './filters/GainFilter.rb'
 
 class GainFilter < FIRFilter
 

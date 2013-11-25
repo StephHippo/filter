@@ -1,4 +1,4 @@
-require './ResettableFilter.rb'
+require './filters/ResettableFilter.rb'
 
 class ScalarLinearFilter < ResettableFilter
 

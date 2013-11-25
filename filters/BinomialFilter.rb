@@ -1,4 +1,4 @@
-require './FIRFilter.rb'
+require './filters/FIRFilter.rb'
 require './Fixnum.rb'
 
 class BinomialFilter < FIRFilter

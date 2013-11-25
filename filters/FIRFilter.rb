@@ -1,4 +1,4 @@
-require './ScalarLinearFilter.rb'
+require './filters/ScalarLinearFilter.rb'
 
 class FIRFilter < ScalarLinearFilter
 

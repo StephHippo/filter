@@ -18,9 +18,8 @@ class Filter
   end
 
   # calculate output and return latest output
-  # TODO: Update to use a proc?
   def get_output(input)
-    raise "Not a Number" unless (input.is_a? Fixnum)
+    raise "Not a Number" unless ((input.is_a? Fixnum) || (input.is_a? Float))
     #append input
     input_value(input)
     #caluclate output and append to outputs

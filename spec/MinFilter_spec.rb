@@ -1,4 +1,4 @@
-require './MinFilter.rb'
+require './filters/MinFilter.rb'
 
 describe 'MinFilter' do
   before(:each) do

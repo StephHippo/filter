@@ -1,4 +1,4 @@
-require './MaxFilter.rb'
+require './filters/MaxFilter.rb'
 
 describe 'MaxFilter' do
   before(:each) do

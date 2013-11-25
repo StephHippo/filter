@@ -1,4 +1,4 @@
-require './ArithmeticMeanFilter.rb'
+require './filters/ArithmeticMeanFilter.rb'
 
 describe 'ArithmeticMeanFilter' do
   before(:each) do

@@ -9,8 +9,8 @@ all:
     ruby -c ScalarLinearFilter.rb
 
 test:
-	rspec spec
+    rspec spec
 
 rdoc:
-	rm -r doc
-	rdoc
+    rm -r doc
+    rdoc

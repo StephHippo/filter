@@ -13,13 +13,13 @@ class Filter
 
   # appends to inputs
   def input_value(input)
-    #append input to inputs
+		raise "Not a Number" unless ((input.is_a? Fixnum) || (input.is_a? Float))
+		#append input to inputs
     @inputs << input
   end
 
   # calculate output and return latest output
   def get_output(input)
-    raise "Not a Number" unless ((input.is_a? Fixnum) || (input.is_a? Float))
     #append input
     input_value(input)
     #caluclate output and append to outputs
@@ -32,6 +32,7 @@ class Filter
 
   #returns relevant values for computation
   def relevant_values
+		raise "N is not an integer" unless ((@n.nil?) || (@n.is_a? Fixnum))
     if @n && @n < @inputs.length
       #calculate on just the last n values
       @inputs[(@inputs.length - @n)..@inputs.length]

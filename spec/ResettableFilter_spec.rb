@@ -11,6 +11,8 @@ describe 'ResettableFilters' do
 	end
 
 	describe 'reset' do
+		#GOOD DATA
+		#STRUCTURED BASIS
 		 context 'given no reset values' do
 		 	it 'should clear the past inputs and continue to output' do
 			 	@resetfilter.reset
@@ -19,6 +21,8 @@ describe 'ResettableFilters' do
 			end
 		 end
 
+		 #GOOD DATA
+		 #STRUCTURED BASIS
 		context 'given a reset_in_val only' do
 			it 'should reset the past inputs to the input value and continue to output' do
 				@resetfilter.reset({:reset_in_val => 2})
@@ -26,6 +30,8 @@ describe 'ResettableFilters' do
 			end
 		end
 
+		 #GOOD DATA
+		 #STRUCTURED BASIS
 		context 'given a reset_out_val only' do
 			it 'should reset the past inputs to the input value and continue to output' do
 				@resetfilter.reset({:reset_out_val=> 2})
@@ -33,6 +39,8 @@ describe 'ResettableFilters' do
 			end
 		end
 
+		 #GOOD DATA
+		 #STRUCTURED BASIS
 		context 'given both reset values' do
 			it 'should reset the past inputs to the reset_in_val and the past outputs to the reset_out_val' do
 				@resetfilter.reset({:reset_in_val=> 3, :reset_out_val => 2})
@@ -41,6 +49,7 @@ describe 'ResettableFilters' do
 			end
 		end
 
+		#BAD DATA
 		context 'given bad reset values' do
 			it 'should raise an error' do
 				lambda{@resetfilter.reset({:reset_in_val=> Object.new, :reset_out_val => Object.new})}.should raise_error

@@ -2,6 +2,8 @@ require './filters/Filter.rb'
 
 class FilterCascade < Filter
 
+	attr_reader :filters
+
   def initialize
     super()
     @filters = []
@@ -14,7 +16,8 @@ class FilterCascade < Filter
   end
 
   #push input through all filters
-  def cascade(input)
+  def get_output(input)
+		raise "No filters added" if @filters.empty?
     cascade_input = input
     #use output of previous filter as input of current filter
     @filters.each do |filter|

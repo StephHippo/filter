@@ -6,6 +6,7 @@ require './Fixnum.rb'
 class BinomialFilter < FIRFilter
 	include Resettable
 
+	# stores values of previously calculated factorials and binomials to save on large calculations
 	@@factorial_cache = Hash.new
 	@@binomial_cache = Hash.new
 
@@ -14,6 +15,7 @@ class BinomialFilter < FIRFilter
     @P = p.to_i
 	end
 
+	# updates the new parameters before calculating the new output
 	def get_output(input)
 		@input_parameters << binomial_value
     super(input)

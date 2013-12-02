@@ -6,6 +6,7 @@ class FeedbackFilter < Filter
 	attr_accessor :outputs
 
 	def initialize
+		#used to track outputs to feed back into the filter
 		@outputs = []
 		super()
 	end

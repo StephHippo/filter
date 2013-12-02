@@ -11,20 +11,21 @@ class ScalarLinearFilter < FeedbackFilter
 
   #reset values based on r
   def reset(r)
-		raise "r is not a number" unless (r.is_a? Fixnum)
+		raise "r is not a number" unless ((r.is_a? Fixnum) || (r.is_a? Float))
     #sum the input parameters
-    input_parameters_sum = @input_parameters.inject(:+)
+    input_parameters_sum = @input_parameters.inject(:+) || 0
     #sum the output parameters
-    output_parameters_sum = @output_parameters.inject(:+)
+    output_parameters_sum = @output_parameters.inject(:+) || 0
     #calculate output reset value = (r * sum(i=0,N)inputparams)/(1 + sum(i=1,M)outputparams)
-    output_reset = (r * input_parameters_sum) / (1 + output_parameters_sum)
+    output_reset = (r * input_parameters_sum) / (1.0 + output_parameters_sum)
     #pass values to super
-    super({:reset_in_val => r, :reset_out_val => output_reset})
+		@inputs = super({:reset_val => r, :arr => @inputs})
+		@outputs = super({:reset_val => output_reset, :arr => @outputs})
   end
 
   # calculates the current output value based on params
   def get_output(input)
-    raise "Not a number" unless (input.is_a? Fixnum)
+    raise "Input is not a number" unless ((input.is_a? Fixnum) || (input.is_a? Float))
     #add to input
     input_value(input)
 

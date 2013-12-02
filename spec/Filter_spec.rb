@@ -76,8 +76,6 @@ describe Filter do
 		end
 	end
 
-	#TODO: relevant_values tests
-
 	describe "relevant_values" do
 		#STRUCTURED BASIS
 		#CONDITIONAL AND IS TRUE (N is > 0)

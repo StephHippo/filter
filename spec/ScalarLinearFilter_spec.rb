@@ -9,15 +9,15 @@ describe 'ScalarLinearFilter' do
 		# GOOD DATA
 		context 'given a valid value r' do
 			it 'should reset input and output values' do
-				@sl.get_output(-1).should eq(-0.5)
-				@sl.get_output(1).should eq(0.05)
-				@sl.get_output(2).should eq(1.495)
-				@sl.reset(5)
+				@sl.get_output(-1.0).should eq(-0.5)
+				@sl.get_output(1.0).should eq(0.05)
+				@sl.get_output(2.0).should eq(1.495)
+				@sl.reset(5.0)
 				@sl.inputs.each do |input|
 					input.should eq 5
 				end
 				@sl.outputs.each do |output|
-					output.should eq (5 * 1)/(1 + 0.1)
+					output.should eq (5.0 * 1.0)/(1.0 + 0.1)
 				end
 			end
 		end

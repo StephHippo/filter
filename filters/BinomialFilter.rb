@@ -7,44 +7,42 @@ class BinomialFilter < FIRFilter
 	include Resettable
 
 	@@factorial_cache = Hash.new
+	@@binomial_cache = Hash.new
 
-  def initialize(p)
+	def initialize(p)
     super([])
-    @p = p.to_i
-		@binomial_cache = Hash.new
+    @P = p.to_i
 	end
 
 	def get_output(input)
-    update_input_params
+		@input_parameters << binomial_value
     super(input)
   end
 
   private
 
-  def update_input_params
-    #get the number of outputs, adding 1 to account for the output being calculated
-    @input_parameters << binomial_value
-  end
-
   #calculate the binomial from the factorials
   #nCk = n!/((n-k)!k!)
   def binomial_value
-    i = @outputs.length + 1
+		i = @outputs.length + 1
     #if i is greater than n, the binomial is 1
-		if (i > @p)
-			return 1
+		return 1 if (i > @P)
 		#if the cache doesn't have the key, add the calculation
-		elsif !(@binomial_cache.has_key? i)
-			num = check_factorial_cache(@p)
-			denom1 = check_factorial_cache(@p-i)
+		if @@binomial_cache.has_key?("#{@P}Choose#{i}") ||  @@binomial_cache.has_key?("#{@P}Choose#{@P-i}")
+			binomial = @@binomial_cache["#{@P}Choose#{i}"] || @@binomial_cache["#{@P}Choose#{@P-i}"]
+			binomial
+		else
+			num = check_factorial_cache(@P)
+			denom1 = check_factorial_cache(@P-i)
 			denom2 = check_factorial_cache(i)
-			@binomial_cache[i] = num/(denom1*denom2)
+			puts "Checked cached"
+			@@binomial_cache["#{@P}Choose#{i}"] = num/(denom1*denom2)
+			@@binomial_cache["#{@P}Choose#{@P-i}"] = num/(denom1*denom2)
 		end
-		@binomial_cache[i]
 	end
 
 	def check_factorial_cache(key)
-		if (@@factorial_cache.has_key? key) then
+		if (@@factorial_cache.has_key? key)
 			@@factorial_cache[key]
 		else
 			@@factorial_cache[key] = key.factorial

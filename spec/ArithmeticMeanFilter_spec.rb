@@ -54,6 +54,7 @@ describe 'ArithmeticMeanFilter' do
 		end
 
 	end
+
 	#GOOD DATA
 	describe "average" do
 		context 'given an array of integers' do

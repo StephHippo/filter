@@ -3,6 +3,8 @@ require './filters/StaticFilter.rb'
 class MaxFilter < StaticFilter
 	include Resettable
 
+	attr_accessor :max
+
 	def initialize(n = nil)
     operation = lambda{|arr| arr.max}
     super(n, &operation)
@@ -19,6 +21,10 @@ class MaxFilter < StaticFilter
 				@max
 			end
 		end
+	end
+
+	def reset
+		@n ? @inputs = [] : @max = 0
 	end
 
 end

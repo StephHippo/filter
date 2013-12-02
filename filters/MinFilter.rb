@@ -5,6 +5,8 @@ class MinFilter < StaticFilter
 
 	include Resettable
 
+	attr_accessor :min
+
   def initialize(n = nil)
     operation = lambda{|arr| arr.min}
     super(n, &operation)
@@ -21,5 +23,9 @@ class MinFilter < StaticFilter
 				@min
 			end
 		end
+	end
+
+	def reset
+		@n ? @inputs = [] : @min = 0
 	end
 end

@@ -23,9 +23,9 @@ class ArithmeticMeanFilter < StaticFilter
 		end
 	end
 
-	def reset(params = {})
+	def reset
 		if @n
-			super(params = {})
+			@inputs = []
 		else
 			@total = 0
 			@i = 0

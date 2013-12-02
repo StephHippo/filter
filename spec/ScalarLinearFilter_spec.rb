@@ -5,25 +5,50 @@ describe 'ScalarLinearFilter' do
     @sl = ScalarLinearFilter.new([0.5,0.5], [0.1])
   end
 
-  it 'should give scalar linear output' do
-    @sl.get_output(-1).should eq(-0.5)
-    @sl.get_output(1).should eq(0.05)
-    @sl.get_output(2).should eq(1.495)
-  end
+	describe 'reset' do
+		# GOOD DATA
+		context 'given a valid value r' do
+			it 'should reset input and output values' do
+				@sl.get_output(-1).should eq(-0.5)
+				@sl.get_output(1).should eq(0.05)
+				@sl.get_output(2).should eq(1.495)
+				@sl.reset(5)
+				@sl.inputs.each do |input|
+					input.should eq 5
+				end
+				@sl.outputs.each do |output|
+					output.should eq (5 * 1)/(1 + 0.1)
+				end
+			end
+		end
 
-  it 'should reset and continue to output' do
-    @sl.get_output(-1).should eq(-0.5)
-    @sl.get_output(1).should eq(0.05)
-    @sl.get_output(2).should eq(1.495)
-    @sl.reset(0)
-    @sl.get_output(-1).should eq(-0.5)
-    @sl.get_output(3).should eq(1.05)
-    @sl.get_output(1).should eq(1.895)
-    @sl.get_output(2).should eq(1.3105)
-    @sl.get_output(1).should eq(1.36895)
-  end
+		# BAD DATA
+		context 'given an r value that is not a number' do
+			it 'should raise an error' do
+				lambda{@sl.reset(Object.new)}.should raise_error
+			end
+		end
+	end
 
-  it 'should assert that the inputs must be numbers' do
-    lambda{@sl.get_output(Object.new)}.should raise_error
-  end
+	describe 'get_output' do
+  	# BAD DATA
+		it 'should give scalar linear output' do
+  	  @sl.get_output(-1).should eq(-0.5)
+  	  @sl.get_output(1).should eq(0.05)
+    	@sl.get_output(2).should eq(1.495)
+  	end
+
+  	# GOOD DATA
+  	it 'should assert that the inputs must be numbers' do
+    	lambda{@sl.get_output(Object.new)}.should raise_error
+		end
+	end
+
+	describe 'validate_param' do
+
+		it 'should raise an error if an input is not an int or float' do
+
+		end
+
+	end
 end

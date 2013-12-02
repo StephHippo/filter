@@ -29,6 +29,7 @@ describe 'ArithmeticMeanFilter' do
 		end
 	end
 
+	#GOOD DATA
 	describe "average" do
 		context 'given an array of integers' do
 			it 'it should return the average from a series of inputs' do
@@ -38,6 +39,7 @@ describe 'ArithmeticMeanFilter' do
 			end
 		end
 
+		#BAD DATA
 		context 'given an array of non-numbers' do
 			it 'should raise an error' do
 				ArithmeticMeanFilter.publicize(:average) do

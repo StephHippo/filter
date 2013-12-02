@@ -44,7 +44,6 @@ describe 'MinFilter' do
 		end
 	end
 
-
 	describe 'reset' do
 		# STRUCTURED BASIS
 		context 'given an n value' do
@@ -67,6 +66,16 @@ describe 'MinFilter' do
 				@min.get_output(3)
 				@min.reset()
 				@min.min.should eq 0
+			end
+		end
+	end
+
+	# STRESS TEST
+	context 'given a large amount of input values' do
+		it 'should find the min without running out of memory' do
+			100000000.times do
+				out = rand(10000000)
+				@min.get_output(out)
 			end
 		end
 	end

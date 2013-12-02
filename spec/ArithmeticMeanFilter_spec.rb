@@ -74,4 +74,14 @@ describe 'ArithmeticMeanFilter' do
 			end
 		end
 	end
+
+	# STRESS TEST
+	context 'given a large amount of valid input values' do
+		it 'should continue calculating' do
+			100000000.times do
+				out = rand(10000000)
+				@mean.get_output(out)
+			end
+		end
+	end
 end

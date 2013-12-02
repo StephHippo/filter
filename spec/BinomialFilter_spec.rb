@@ -39,8 +39,8 @@ describe 'BinomialFilter' do
 		end
 
 
+		# STRUCTURED BASIS
 		context 'given an i greater than p' do
-			# STRUCTURED BASIS
 			it 'should return 1' do
 				@binomial = BinomialFilter.new(0)
 				BinomialFilter.publicize(:binomial_value) do
@@ -78,20 +78,25 @@ describe 'BinomialFilter' do
 		# STRUCTURED BASIS
 		context 'given a key already in the cache' do
 			it 'should find the cached value of a previously calculated factorial' do
-			  BinomialFilter.publicize(:check_factorial_cache) do
+		  @binomial.get_output(0)
+			BinomialFilter.publicize(:check_factorial_cache) do
 					@binomial.check_factorial_cache(3)
-
-					@binomial.class_eval do
-						cache = @binomial.class_variable_get(:factorial_cache)
-						cache.has_key? 3
-					end
+					cache = BinomialFilter.class_variable_get(:@@factorial_cache)
+					cache.has_key?(3).should be_true
 				end
 			end
 		end
 
+		# STRUCTURED BASIS
 		context 'given a key not already in the cache' do
 			it 'should add it to the cache' do
-
+				BinomialFilter.publicize(:check_factorial_cache) do
+					cache = BinomialFilter.class_variable_get(:@@factorial_cache)
+					cache.has_key?(9).should be_false
+					@binomial.check_factorial_cache(9)
+					cache2 = BinomialFilter.class_variable_get(:@@factorial_cache)
+					cache2.has_key?(9).should be_true
+				end
 			end
 		end
 	end

@@ -1,3 +1,6 @@
+# MinFilters operate independently of their outputs
+# For filters that have no n constraint, inputs do not need stored
+
 require './filters/Filter.rb'
 require './Resettable.rb'
 
@@ -13,6 +16,8 @@ class MinFilter < Filter
 		@min = nil
 	end
 
+	# Given an n constraint, gets output like a standard filter
+	# If no constraint, calculates without using inputs
 	def get_output(input)
 		if @n then
 			super(input)
@@ -25,6 +30,7 @@ class MinFilter < Filter
 		end
 	end
 
+	# Clears either the min or the inputs
 	def reset
 		@n ? @inputs = [] : @min = 0
 	end

@@ -1,3 +1,8 @@
+# Scalar Linear Filter finds the yi output using the equation:
+# y_i + (a_i)(y_i-1) + (a_2)(y_i-2) + ... + (a_m)(y_i-M) = b_0(x_i) + b_i(x_i-1) + b_2(x_i-2) + ... + (b_N)(x_i-N)
+# Where N is the number of input filters
+# And M is the number of output filters
+
 require './filters/FeedbackFilter.rb'
 require './Resettable.rb'
 class ScalarLinearFilter < FeedbackFilter
@@ -9,7 +14,8 @@ class ScalarLinearFilter < FeedbackFilter
     @output_parameters = outputparams
   end
 
-  #reset values based on r
+  # Reset the input values to r
+	# Reset the output values to (r * sum(i=0,N)inputparams)/(1 + sum(i=1,M)outputparams)
   def reset(r)
 		raise "r is not a number" unless ((r.is_a? Fixnum) || (r.is_a? Float))
     #sum the input parameters
@@ -23,7 +29,7 @@ class ScalarLinearFilter < FeedbackFilter
 		@outputs = super({:reset_val => output_reset, :arr => @outputs})
   end
 
-  # calculates the current output value based on params
+  # Multiplies the inputs and outputs by their respective parameters to get the new output
   def get_output(input)
     raise "Input is not a number" unless ((input.is_a? Fixnum) || (input.is_a? Float))
     #add to input
@@ -48,7 +54,7 @@ class ScalarLinearFilter < FeedbackFilter
 
   private
 
-  #multiplies each input/output by its corresponding parameter
+  # multiplies each input/output by its corresponding parameter
 	def multiply_each_by_param(arr, params_arr)
     total = 0.0
     #multiply each value by its corresponding parameter and add to total
@@ -59,8 +65,8 @@ class ScalarLinearFilter < FeedbackFilter
     total
   end
 
-  #retrieves the latest z values of an input or output
-  #if there are not enough parameters, it fills the empty values with 0
+  # retrieves the latest z values of an input or output
+  # if there are not enough parameters, it fills the empty values with 0
   def get_last_z_values(z, value_array)
     arr = value_array
     #if there will be missing output params

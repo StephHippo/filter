@@ -1,3 +1,4 @@
+# FilterCascade is an ordered collection of chain-linked filters where the output of one filter serves as the input of the next filter
 require './filters/Filter.rb'
 
 class FilterCascade < Filter

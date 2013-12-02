@@ -22,7 +22,7 @@ class BinomialFilter < FIRFilter
   private
 
   #calculate the binomial from the factorials
-  #nCk = n!/((n-k)!k!)
+  #nCk = n!/((n-i)!i!)
   def binomial_value
 		i = @outputs.length + 1
     #if i is greater than n, the binomial is 1
@@ -35,12 +35,12 @@ class BinomialFilter < FIRFilter
 			num = check_factorial_cache(@P)
 			denom1 = check_factorial_cache(@P-i)
 			denom2 = check_factorial_cache(i)
-			puts "Checked cached"
 			@@binomial_cache["#{@P}Choose#{i}"] = num/(denom1*denom2)
 			@@binomial_cache["#{@P}Choose#{@P-i}"] = num/(denom1*denom2)
 		end
 	end
 
+	# Adds the factorial computation of the key if not already present
 	def check_factorial_cache(key)
 		if (@@factorial_cache.has_key? key)
 			@@factorial_cache[key]

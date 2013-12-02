@@ -13,6 +13,7 @@ class ArithmeticMeanFilter < Filter
 		@i = 0
   end
 
+	# Operates as a memoryless filter unless an n if given
 	def get_output(input)
 		if @n
 			super(input)
@@ -23,6 +24,7 @@ class ArithmeticMeanFilter < Filter
 		end
 	end
 
+	# Given an n, it resets the inputs
 	def reset
 		if @n
 			@inputs = []
@@ -34,6 +36,7 @@ class ArithmeticMeanFilter < Filter
 
   private
 
+	# Sum all inputs and divide by the number of inputs
   def average(arr)
 			arr.inject(:+)/arr.length
   end

@@ -1,3 +1,5 @@
+# Filters are assumed to be unresettable and static (non-feedback) unless stated otherwise
+# All filters can take an optional n constraint
 class Filter
 
   #repeatedly takes an input value
@@ -10,7 +12,7 @@ class Filter
     @operation = operation
   end
 
-  # appends to inputs
+  # appends input to inputs
   def input_value(input)
 		raise "Not a Number" unless ((input.is_a? Fixnum) || (input.is_a? Float))
 		#append input to inputs
@@ -23,13 +25,11 @@ class Filter
     input_value(input)
     #caluclate output and append to outputs
     output = @operation.call(relevant_values)
-    #return latest outputs
-    #@outputs.last
   end
 
   private
 
-  #returns relevant values for computation
+  #returns relevant values for @n dependent filters or all values for independent filters
   def relevant_values
 		raise "N is not an integer" unless ((@n.nil?) || (@n.is_a? Fixnum))
     if @n && @n < @inputs.length

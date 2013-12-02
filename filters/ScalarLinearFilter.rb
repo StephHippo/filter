@@ -48,10 +48,10 @@ class ScalarLinearFilter < ResettableFilter
 
   #multiplies each input/output by its corresponding parameter
 	def multiply_each_by_param(arr, params_arr)
-    total = 0
+    total = 0.0
     #multiply each value by its corresponding parameter and add to total
     params_arr.each_with_index do |param, i|
-			total += arr[i] * param unless arr[i].nil?
+			total += (arr[i] * param) unless arr[i].nil?
 		end
     #return total
     total

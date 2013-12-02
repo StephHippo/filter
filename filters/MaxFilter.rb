@@ -1,6 +1,6 @@
-require './filters/StaticFilter.rb'
+require './filters/Filter.rb'
 
-class MaxFilter < StaticFilter
+class MaxFilter < Filter
 	include Resettable
 
 	attr_accessor :max

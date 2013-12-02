@@ -1,7 +1,7 @@
-require './filters/StaticFilter.rb'
+require './filters/Filter.rb'
 require './Resettable.rb'
 
-class MinFilter < StaticFilter
+class MinFilter < Filter
 
 	include Resettable
 

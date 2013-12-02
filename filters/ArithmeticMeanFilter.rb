@@ -1,8 +1,8 @@
 #ArithmeticMean Filter finds the average of all (or the last n) inputs
-require './filters/StaticFilter.rb'
+require './filters/Filter.rb'
 require './Resettable.rb'
 
-class ArithmeticMeanFilter < StaticFilter
+class ArithmeticMeanFilter < Filter
 
 	include Resettable
 

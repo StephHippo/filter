@@ -44,11 +44,12 @@ describe 'ScalarLinearFilter' do
 		end
 	end
 
+	#TODO: Private tests
 	describe 'validate_param' do
 
-		it 'should raise an error if an input is not an int or float' do
+	end
 
-		end
+	describe 'get_last_z_values' do
 
 	end
 end

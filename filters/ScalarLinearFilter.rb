@@ -47,13 +47,12 @@ class ScalarLinearFilter < ResettableFilter
   private
 
   #multiplies each input/output by its corresponding parameter
-  def multiply_each_by_param(arr, params_arr)
-    raise "Arrays must be of equal length" unless arr.length == params_arr.length
+	def multiply_each_by_param(arr, params_arr)
     total = 0
     #multiply each value by its corresponding parameter and add to total
-    arr.each_with_index do |arr,i|
-      total += arr*params_arr[i]
-    end
+    params_arr.each_with_index do |param, i|
+			total += arr[i] * param unless arr[i].nil?
+		end
     #return total
     total
   end
@@ -65,14 +64,10 @@ class ScalarLinearFilter < ResettableFilter
     #if there will be missing output params
     if arr.length < z
       #get the parameters that are there
-      arr = arr.reverse
-      #fill in any gaps with 0's
-      (z - arr.length).times{arr << 0}
-    else
-      #get the latest z values from the array
-      arr = arr.reverse[0...z]
+      arr.reverse
+		else
+      arr.reverse[0...z]
     end
-    arr
   end
 
 end

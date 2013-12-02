@@ -7,6 +7,9 @@ all:
     ruby -c MaxFilter.rb
     ruby -c MinFilter.rb
     ruby -c ScalarLinearFilter.rb
+    ruby -c FeedbackFilter.rb
+    ruby -c GainFilter.rb
+    ruby -c FIRFilter.rb
 
 test:
     rspec spec

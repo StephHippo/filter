@@ -1,8 +1,9 @@
-require './filters/ResettableFilter.rb'
+require './filters/FeedbackFilter.rb'
+require './Resettable.rb'
+class ScalarLinearFilter < FeedbackFilter
+	include Resettable
 
-class ScalarLinearFilter < ResettableFilter
-
-  def initialize(inputparams, outputparams)
+	def initialize(inputparams, outputparams)
     super()
     @input_parameters = inputparams
     @output_parameters = outputparams

@@ -2,11 +2,10 @@ class Filter
 
   #repeatedly takes an input value
   #produces an output value
-  attr_accessor :outputs, :inputs
+  attr_accessor :inputs
 
   def initialize(n = nil, &operation)
     @inputs = []
-    @outputs = []
     @n = n
     @operation = operation
   end
@@ -23,9 +22,9 @@ class Filter
     #append input
     input_value(input)
     #caluclate output and append to outputs
-    @outputs << @operation.call(relevant_values)
+    output = @operation.call(relevant_values)
     #return latest outputs
-    @outputs.last
+    #@outputs.last
   end
 
   private

@@ -4,6 +4,7 @@ require './filters/FIRFilter.rb'
 require './Fixnum.rb'
 
 class BinomialFilter < FIRFilter
+	include Resettable
 
 	@@factorial_cache = Hash.new
 

@@ -4,31 +4,56 @@ require './publicize.rb'
 describe 'ArithmeticMeanFilter' do
   before(:each) do
     @mean = ArithmeticMeanFilter.new
+		@meann = ArithmeticMeanFilter.new(4)
   end
 
 	describe 'get_output' do
+		# GOOD DATA
+		# STRUCTURED BASIS
   	it 'should find the mean of a series of inputs' do
-    	@mean.get_output(5).should be 5
-    	@mean.get_output(5).should be 5
-    	@mean.get_output(11).should be 7
-    	@mean.get_output(3).should be 6
+    	@mean.get_output(5).should eq 5.0
+    	@mean.get_output(5).should eq 5.0
+    	@mean.get_output(11).should eq 7.0
+    	@mean.get_output(3).should eq 6.0
   	end
 
+		# BAD DATA
+		# STRUCTURED BASIS
   	it 'should assert that the inputs must be numbers' do
     	lambda{@mean.get_output(Object.new)}.should raise_error
   	end
-
-  	it 'should discard previous data after reset' do
-    	@mean.get_output(5).should be 5
-    	@mean.get_output(5).should be 5
-    	@mean.get_output(11).should be 7
-    	@mean.get_output(3).should be 6
-    	@mean.reset()
-    	@mean.get_output(2).should be 2
-    	@mean.get_output(6).should be 4
-		end
 	end
 
+	describe 'reset' do
+
+		# STRUCTURED BASIS
+		context 'given an n value' do
+			it 'should discard previous data after reset' do
+				@meann.get_output(3).should eq 3.0
+				@meann.get_output(5).should eq 4.0
+				@meann.get_output(7).should eq 5.0
+				@meann.get_output(9).should eq 6.0
+				@meann.get_output(12.0).should eq 8.25
+				@meann.reset()
+				@meann.get_output(2.0).should eq 2.0
+				@meann.get_output(6.0).should eq 4.0
+			end
+		end
+
+		# STRUCTURED BASIS
+		context 'given no n value' do
+			it 'should discard previous data after reset' do
+				@mean.get_output(5).should eq 5.0
+				@mean.get_output(5).should eq 5.0
+				@mean.get_output(11).should eq 7.0
+				@mean.get_output(3).should eq 6.0
+				@mean.reset()
+				@mean.get_output(2).should eq 2.0
+				@mean.get_output(6).should eq 4.0
+			end
+		end
+
+	end
 	#GOOD DATA
 	describe "average" do
 		context 'given an array of integers' do

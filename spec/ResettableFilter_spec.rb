@@ -58,5 +58,29 @@ describe 'ResettableFilters' do
 
 	end
 
+	describe 'validate_param' do
+
+		# STRUCTURED BASIS
+		# GOOD DATA
+		context 'given an int or float' do
+			it 'should not raise an error' do
+				ResettableFilter.publicize(:validate_param) do
+					@resetfilter.validate_param(0.5)
+					@resetfilter.validate_param(1)
+				end
+			end
+		end
+
+		# STRUCTURED BASIS
+		# GOOD DATA
+		context 'given an invalid parameter' do
+			it 'should raise an error' do
+				ResettableFilter.publicize(:validate_param) do
+					lambda{@resetfilter.validate_param(Object.new)}.should raise_error
+				end
+			end
+		end
+	end
+
 
 end

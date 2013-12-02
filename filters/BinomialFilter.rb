@@ -3,10 +3,12 @@ require './Fixnum.rb'
 
 class BinomialFilter < FIRFilter
 
+
   def initialize(n)
     super([])
     @n = n.to_i
-  end
+		@binomial_cache = Hash.new
+	end
 
   def get_output(input)
     update_input_params
@@ -25,6 +27,13 @@ class BinomialFilter < FIRFilter
   def binomial_value
     i = @outputs.length + 1
     #if i is greater than n, the binomial is 1
-    (i > @n) ? 1 : @n.factorial/((@n-i).factorial * (i).factorial)
+		if (i > @n)
+			1
+		elsif @binomial_cache.has_key? i
+			@binomial_cache[i]
+		else
+			@binomial_cache[i] = @n.factorial/((@n-i).factorial * (i).factorial)
+			@binomial_cache[i]
+		end
   end
 end

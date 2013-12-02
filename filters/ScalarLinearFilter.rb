@@ -10,6 +10,7 @@ class ScalarLinearFilter < ResettableFilter
 
   #reset values based on r
   def reset(r)
+		raise "r is not a number" unless (r.is_a? Fixnum)
     #sum the input parameters
     input_parameters_sum = @input_parameters.inject(:+)
     #sum the output parameters
@@ -17,12 +18,12 @@ class ScalarLinearFilter < ResettableFilter
     #calculate output reset value = (r * sum(i=0,N)inputparams)/(1 + sum(i=1,M)outputparams)
     output_reset = (r * input_parameters_sum) / (1 + output_parameters_sum)
     #pass values to super
-    super(r, output_reset)
+    super({:reset_in_val => r, :reset_out_val => output_reset})
   end
 
   # calculates the current output value based on params
   def get_output(input)
-    raise "Not a number" unless input.is_a? Fixnum
+    raise "Not a number" unless (input.is_a? Fixnum)
     #add to input
     input_value(input)
 

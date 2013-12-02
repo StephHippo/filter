@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/ScalarLinearFilter.rb'
 
 describe 'ScalarLinearFilter' do

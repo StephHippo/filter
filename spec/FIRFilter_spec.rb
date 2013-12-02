@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/FIRFilter.rb'
 
 describe 'FIRFilters' do

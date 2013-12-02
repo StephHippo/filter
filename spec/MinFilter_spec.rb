@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/MinFilter.rb'
 
 describe 'MinFilter' do

@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/MaxFilter.rb'
 
 describe 'MaxFilter' do

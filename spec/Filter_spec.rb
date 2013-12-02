@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/Filter.rb'
 require './publicize.rb'
 

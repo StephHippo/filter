@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/GainFilter.rb'
 
 describe 'GainFilter' do

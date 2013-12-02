@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/FilterCascade.rb'
 require './filters/MaxFilter.rb'
 require './filters/MinFilter.rb'

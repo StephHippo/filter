@@ -1,5 +1,8 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/BinomialFilter.rb'
 require './publicize.rb'
+
 
 describe 'BinomialFilter' do
   before(:each) do
@@ -36,29 +39,59 @@ describe 'BinomialFilter' do
 		end
 
 
+		context 'given an i greater than p' do
+			# STRUCTURED BASIS
+			it 'should return 1' do
+				@binomial = BinomialFilter.new(0)
+				BinomialFilter.publicize(:binomial_value) do
+					@binomial.binomial_value.should eq 1
+				end
+			end
+    end
+
 		# STRUCTURED BASIS
+		# EQUIVALENCE PARTITIONING
 		context 'given an i less than or equal to P that has not been seen before by the binomial cache' do
 			it 'should check the factorial cache and calculate the new binomial value' do
-				puts "Test of interest"
-				@binomial3 = BinomialFilter.new(5)
-				@binomial3.get_output(3)
-				@binomial2 = BinomialFilter.new(3)
+				#@binomial2 = BinomialFilter.new(32)
 				BinomialFilter.publicize(:binomial_value) do
-					@binomial2.should_receive(:check_factorial_cache)
-					@binomial2.binomial_value
+						@binomial.should_receive(:check_factorial_cache).exactly(3).times
+						@binomial.binomial_value.should eq 3
 				end
 			end
 		end
 
 		# STRUCTURED BASIS
+		# EQUIVALENCE PARTITIONING
 		context 'given an i less than or equal to P that has been seen before by another binomial filter' do
 			it 'should return the cached value' do
-				@binomial4 = BinomialFilter.new(3)
-				@binomial4.get_output(1)
+				@binomial.get_output(1)
 				BinomialFilter.publicize(:binomial_value) do
-					@binomial4.should_receive(:check_factorial_cache).exactly(0).times
-					@binomial4.binomial_value.should
+					@binomial.should_receive(:check_factorial_cache).exactly(0).times
+					@binomial.binomial_value
 				end
+			end
+		end
+	end
+
+	describe 'check_factorial_cache' do
+		# STRUCTURED BASIS
+		context 'given a key already in the cache' do
+			it 'should find the cached value of a previously calculated factorial' do
+			  BinomialFilter.publicize(:check_factorial_cache) do
+					@binomial.check_factorial_cache(3)
+
+					@binomial.class_eval do
+						cache = @binomial.class_variable_get(:factorial_cache)
+						cache.has_key? 3
+					end
+				end
+			end
+		end
+
+		context 'given a key not already in the cache' do
+			it 'should add it to the cache' do
+
 			end
 		end
 	end

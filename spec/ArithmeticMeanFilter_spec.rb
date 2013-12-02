@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './filters/ArithmeticMeanFilter.rb'
 require './publicize.rb'
 

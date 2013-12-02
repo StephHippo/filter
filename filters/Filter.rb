@@ -14,7 +14,7 @@ class Filter
 
   # appends input to inputs
   def input_value(input)
-		raise "Not a Number" unless ((input.is_a? Fixnum) || (input.is_a? Float))
+		raise "Not a valid Numerical Input" unless (input.is_a?(Fixnum) || input.is_a?(Float) || input.is_a?(Array))
 		#append input to inputs
     @inputs << input
   end

@@ -35,20 +35,15 @@ class ScalarLinearFilter < FeedbackFilter
     #add to input
     input_value(input)
 
-    #get count of output parameters
     n = @input_parameters.length
-    #get the last n values of the input, using 0 as placeholder for underflow
     inputs = get_last_z_values(n, @inputs)
 
-    #get count of output parameters
     m = @output_parameters.length
-    #get the last n values of the output, using 0 as a placeholder for underflow
     outputs = get_last_z_values(m, @outputs)
 
-    #solve for yi by subtracting values from right hand side
+    #solve for yi by subtracting multiplied values from right hand side
     output =  multiply_each_by_param(inputs, @input_parameters) - multiply_each_by_param(outputs, @output_parameters)
     @outputs << output
-    #return latest output
     @outputs.last
   end
 
@@ -61,7 +56,6 @@ class ScalarLinearFilter < FeedbackFilter
     params_arr.each_with_index do |param, i|
 			total += (arr[i] * param) unless arr[i].nil?
 		end
-    #return total
     total
   end
 
@@ -71,7 +65,7 @@ class ScalarLinearFilter < FeedbackFilter
     arr = value_array
     #if there will be missing output params
     if arr.length < z
-      #get the parameters that are there
+      # values are appended, not prepended so array is returned in reverse order
       arr.reverse
 		else
       arr.reverse[0...z]

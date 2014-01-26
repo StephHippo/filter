@@ -1,8 +1,8 @@
 #ArithmeticMean Filter finds the average of all (or the last n) inputs
-require './filters/Filter.rb'
+require './filters/StaticFilter.rb'
 require './Resettable.rb'
 
-class ArithmeticMeanFilter < Filter
+class ArithmeticMeanFilter < StaticFilter
 
 	include Resettable
 
@@ -16,9 +16,9 @@ class ArithmeticMeanFilter < Filter
 	# Operates as a memoryless filter unless an n if given
 	def get_output(input)
 		if @n
-			super(input)
+			super(clean_input)
 		else
-			@total += input
+			@total += clean_input
 			@i += 1.0
 			@total/@i
 		end
@@ -40,5 +40,4 @@ class ArithmeticMeanFilter < Filter
   def average(arr)
 			arr.inject(:+)/arr.length
   end
-
 end

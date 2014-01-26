@@ -11,4 +11,9 @@ class FeedbackFilter < Filter
 		super()
 	end
 
+	def get_output(input)
+		raise "Vectors not supported for Feedback Filters" if input.is_a? Array
+		super(input)
+	end
+
 end
